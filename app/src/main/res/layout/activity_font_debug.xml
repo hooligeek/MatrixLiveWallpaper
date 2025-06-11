@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:paddingTop="64dp"   android:paddingBottom="64dp" android:clipToPadding="false" tools:context=".FontDebugActivity">
+
+    <TextView
+        android:id="@+id/font_display_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_green_light"
+        android:textSize="68sp" android:paddingLeft="16dp"  android:paddingRight="16dp"
+        android:lineSpacingExtra="16dp" android:gravity="center_horizontal" android:text="Loading characters..."
+        tools:text="Sample characters for font display..." />
+
+</ScrollView>

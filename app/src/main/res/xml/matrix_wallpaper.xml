@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wallpaper
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:thumbnail="@mipmap/kg_matrix_round"  android:description="@string/matrix_wallpaper_description"
+    android:settingsActivity="com.example.hooligeek_matrix_live_wallpaper.MatrixWallpaperSettingsActivity" />
