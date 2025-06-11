@@ -58,6 +58,17 @@
         android:text="Preview Wallpaper"
         android:textColor="@color/black"
         android:backgroundTint="@color/holo_green_light"
+        app:layout_constraintBottom_toTopOf="@+id/btn_view_github"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+    <Button
+        android:id="@+id/btn_view_github"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View on GitHub"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/holo_green_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

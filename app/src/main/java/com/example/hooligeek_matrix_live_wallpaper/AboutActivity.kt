@@ -1,10 +1,12 @@
 package com.example.hooligeek_matrix_live_wallpaper
 
-import android.content.Intent // Import for Intent
+import android.content.Intent
 import android.graphics.Typeface
+import android.net.Uri // This import is crucial for opening web links
 import android.os.Bundle
-import android.widget.Button // Import for Button
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast // You had this, keeping it for consistency
 import androidx.appcompat.app.AppCompatActivity
 
 class AboutActivity : AppCompatActivity() {
@@ -13,55 +15,50 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
-        // Find the TextViews
         val aboutTitle: TextView = findViewById(R.id.about_title)
         val aboutContent: TextView = findViewById(R.id.about_content)
         val aboutCharSetDisplay: TextView = findViewById(R.id.about_char_set_display)
 
-        // Set the text for title and main content.
         aboutTitle.text = "Matrix Live Wallpaper"
         aboutContent.text = "Version 1.0\n\n" +
                 "Developed with AI by Hooligeek.\n\n" +
                 "This live wallpaper brings the iconic digital rain from The Matrix to your device.\n\n" +
                 "Enjoy the immersive experience!"
 
-        // Load the custom font from assets
         val customTypeface: Typeface? = try {
             Typeface.createFromAsset(assets, "matrix_code.ttf")
         } catch (e: Exception) {
-            e.printStackTrace() // Print the error to Logcat for debugging
-            // Display an error message on the screen if the font cannot be loaded
+            e.printStackTrace()
             aboutCharSetDisplay.text = "Error: Matrix font could not be loaded. Please ensure 'matrix_code.ttf' is in your 'assets' folder."
-            null // Return null if font loading fails
+            null
         }
 
-        // Apply the custom font ONLY to the character set display TextView
         customTypeface?.let {
             aboutCharSetDisplay.typeface = it
-            // Populate this TextView with the actual character set using the custom font
             aboutCharSetDisplay.text = getRandomMatrixCharSet()
         } ?: run {
-            // If font loading failed (customTypeface is null), this block will execute.
-            // The TextView will remain with its default font, showing the error message set above.
+            // If font loading failed, the TextView will remain with its default font, showing the error message.
         }
 
-        // --- NEW CODE STARTS HERE ---
-        // Find the new demo button by its ID
         val showDemoButton: Button = findViewById(R.id.btn_show_demo)
+        val viewGithubButton: Button = findViewById(R.id.btn_view_github) // NEW: Find the GitHub button
 
-        // Set an OnClickListener for the button
+        // This button launches the WallpaperDemoActivity (local preview)
         showDemoButton.setOnClickListener {
-            // Create an Intent to start the WallpaperDemoActivity
             val intent = Intent(this, WallpaperDemoActivity::class.java)
-            startActivity(intent) // Launch the demo activity
+            startActivity(intent)
         }
-        // --- NEW CODE ENDS HERE ---
+
+        // NEW: Set OnClickListener for the GitHub button
+        viewGithubButton.setOnClickListener {
+            val githubUrl = "https://github.com/hooligeek/MatrixLiveWallpaper" // Your GitHub project URL
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(githubUrl))
+            startActivity(intent)
+        }
     }
 
-    // Your verified getRandomMatrixCharSet() method
     private fun getRandomMatrixCharSet(): String {
         val sb = StringBuilder()
-        // Matrix
         sb.append('\u0020') // space
         sb.append('\u0022') // "
         sb.append('\u002A') // *
@@ -70,7 +67,6 @@ class AboutActivity : AppCompatActivity() {
         sb.append('\u003C') // <
         sb.append('\uA78A') // =
         sb.append('\u003E') // >
-        // sb.append('\u00A9') // ©
         sb.append('\u0030') // 0
         sb.append('\u0031') // 1
         sb.append('\u0032') // 2
